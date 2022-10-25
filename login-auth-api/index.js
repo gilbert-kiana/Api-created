@@ -8,8 +8,12 @@ app.use(express.json());
 //connect db
 const connectDb = require("./db/connect");
 
+//authenticate user
+const authenticateUser = require("./middleware/authentication");
+
 //routers
 const authRouter = require("./routes/auth");
+const journeyRouter = require("./routes/shoes");
 
 //routes
 app.use("/api/v1/auth", authRouter);
