@@ -1,9 +1,15 @@
+const { StatusCodes } = require("http-status-codes");
+const Shoe = require("../models/shoe");
+
 const getAllShoes = (req, res) => {
   res.send("Get all shoes");
 };
 
-const uploadShoe = (req, res) => {
-  res.send("Upload Shoe ama create");
+const uploadShoe = async (req, res) => {
+  req.body.createdBy = req.user.userId;
+
+  const shoe = await Shoe.create(req.body);
+  res.status(StatusCodes.CREATED).json({ shoe });
 };
 
 const updateShoe = (req, res) => {

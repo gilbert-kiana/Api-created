@@ -10,6 +10,6 @@ const {
 } = require("../controllers/shoes");
 
 router.route("/").post(uploadShoe).get(getAllShoes);
-router.route("/id").get(getSpecificShoe).patch(updateShoe).delete(deleteShoe);
+router.route("/:id").get(getSpecificShoe).patch(updateShoe).delete(deleteShoe);
 
 module.exports = router;
