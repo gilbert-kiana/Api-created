@@ -5,7 +5,7 @@ const shoeSchema = new mongoose.Schema(
     brand: {
       type: String,
       required: [true, "please provide Brand name"],
-      Maxlength: 50,
+      maxlength: 50,
     },
     name: {
       type: String,
