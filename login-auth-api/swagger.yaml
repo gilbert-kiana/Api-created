@@ -1,0 +1,288 @@
+openapi: 3.0.0
+info:
+  title: login_shoes_api
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://example.com
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/registerrequest'
+              - example:
+                  name: a1
+                  email: a@gmail.com
+                  password: '123456789'
+            example:
+              name: a1
+              email: a@gmail.com
+              password: '123456789'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginRequest'
+              - example:
+                  email: a@gmail.com
+                  password: '123456789'
+            example:
+              email: a@gmail.com
+              password: '123456789'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /shoes/{id}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        - in: path
+          name: shoeId
+          schema:
+            type: string
+          required: true
+          description: the shoe id
+    patch:
+      tags:
+      - shoes
+      summary: Upload Shoe
+      operationId: UploadShoe 
+      parameters: []
+      requestBody:  
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UploadShoeRequest'
+              - example:
+                  brand: skywave2
+                  name: original perfect fit hiking unisex boots – brown
+                  gender: true
+                  price: 2300
+                  shop: sky wave
+                  size: 9
+                  status: true
+            example:
+              brand: skywave2
+              name: original perfect fit hiking unisex boots – brown
+              gender: true
+              price: 2300
+              shop: sky wave
+              size: 9
+              status: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+/users/{userId}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to get
+    patch:
+      tags:
+      - shoes
+      summary: Update shoe details
+      operationId: Updateshoedetails
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateshoedetailsRequest'
+              - example:
+                  email: do@gmail.com
+                  password: '123456789'
+            example:
+              email: do@gmail.com
+              password: '123456789'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - shoes
+      summary: Get specific shoe
+      operationId: Getspecificshoe
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - shoes
+      summary: Delete Specific Shoe
+      operationId: DeleteSpecificShoe
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /shoes:
+    get:
+      tags:
+      - shoes
+      summary: Get all shoes
+      operationId: Getallshoes
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: a1
+        email: a@gmail.com
+        password: '123456789'
+    LoginRequest:
+      title: LoginRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: a@gmail.com
+        password: '123456789'
+    UploadShoeRequest:
+      title: UploadShoeRequest
+      required:
+      - brand
+      - name
+      - gender
+      - price
+      - shop
+      - size
+      - status
+      type: object
+      properties:
+        brand:
+          type: string
+        name:
+          type: string
+        gender:
+          type: boolean
+        price:
+          type: integer
+          format: int32
+        shop:
+          type: string
+        size:
+          type: integer
+          format: int32
+        status:
+          type: boolean
+      example:
+        brand: skywave2
+        name: original perfect fit hiking unisex boots – brown
+        gender: true
+        price: 2300
+        shop: sky wave
+        size: 9
+        status: true
+    UpdateshoedetailsRequest:
+      title: UpdateshoedetailsRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: do@gmail.com
+        password: '123456789'
+    DeleteSpecificShoeRequest:
+      title: DeleteSpecificShoeRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: do@gmail.com
+        password: '123456789'
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+  
+- name: Auth
+  description: ''
+- name: shoes
+  description: ''
