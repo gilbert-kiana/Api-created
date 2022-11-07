@@ -39,7 +39,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(xss());
-app.use("/api-use", SwaggerUi.serve, SwaggerUi.setup(SwaggerDocument));
+// here is where I load the swagger documentation.Has bugs
+// app.use("/api-use", SwaggerUi.serve, SwaggerUi.setup(SwaggerDocument));
 
 //routes
 app.use("/api/v1/auth", authRouter);
