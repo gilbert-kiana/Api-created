@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FileUploader from "./FileUploader";
+import axios from "axios";
 
 const Forminput = () => {
   const [name, setName] = useState("");
@@ -13,7 +14,13 @@ const Forminput = () => {
     formData.append("price", price);
     formData.append("file", selectedFile);
 
-    console.log(...formData);
+    // console.log(...formData);
+    axios
+      .post("http://localhost:5000", formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
