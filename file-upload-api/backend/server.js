@@ -4,8 +4,15 @@ const files = require("./routes/files");
 const connectDb = require("./db/connect");
 require("dotenv");
 
+//errrohandler
+
+const notFoundMiddleware = require("./middleware/not-found");
+const errorHanderMiddleware = require("./middleware/error-handler");
+
 //middleware
 app.use(express.json());
+app.use(notFoundMiddleware);
+app.use(errorHanderMiddleware);
 
 app.use("/api/v1/files", files);
 
